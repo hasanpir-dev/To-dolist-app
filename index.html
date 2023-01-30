@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <div class="yellow"><img src="img/yellow.svg" alt="yellow"></div>
+        <div>
+          <h2>To-do list</h2>
+        </div>
+      </div>
+      <div class="sortClass"><img src="img/sort_nha.svg" alt="sort" id="sortBtn"></div>
+      <div class="card-body">
+        <ul class="" id="toDoList" />
+
+        </ul>
+      </div>
+      <div class="card-footer">
+        <input type="text" id="toDoInput">
+        <img src="img/add.svg" alt="add" id="toDoBtn">
+        <img src="img/clear.svg" alt="add" id="removeAllBtn">
+      </div>
+      <div class="notification"></div>
+    </div>
+  </div>
+
+  <script src="todo.js"></script>
+</body>
+
+</html>
