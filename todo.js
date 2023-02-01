@@ -4,6 +4,7 @@ const sortBtn = document.getElementById("sortBtn");
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
 let desc = true;
 
+
 window.addEventListener("load", () => {
     todos = JSON.parse(localStorage.getItem("todos")) || [];
     const toDoBtn = document.getElementById("toDoBtn");
@@ -36,16 +37,30 @@ window.addEventListener("load", () => {
 
     }
 
-
     toDoBtn.addEventListener("click", writeTodo);
 
+
+
+    let enterKey = false;
     toDoInput.addEventListener("keyup", (e) => {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" && !enterKey) {
             e.preventDefault();
+            enterKey = true;
             toDoBtn.click();
         }
 
-    })
+    });
+
+    document.addEventListener("keyup", (e) => {
+        if (e.key === "Enter" && !enterKey) {
+            e.preventDefault();
+            enterKey = true;
+            toDoBtn.click();
+        }
+
+        enterKey = false;
+    });
+
 
     showTodoList();
     showInput();
@@ -182,7 +197,7 @@ removeAll.addEventListener("click", removeAllTodos);
 
 /* SORT */
 
-const sort = (e) => {
+const sort = () => {
     if (desc) {
         todos.sort((a, b) => a.text.localeCompare(b.text));
         desc = false;
@@ -258,4 +273,3 @@ const drop = (e) => {
     showTodoList();
 
 };
-
