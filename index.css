@@ -149,3 +149,13 @@ input {
 .over {
     transform: scale(1.1, 1.1);
 }
+
+li:hover {
+    cursor: pointer;
+
+}
+
+.editImg:hover {
+
+    cursor: text;
+}

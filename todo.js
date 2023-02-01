@@ -9,7 +9,8 @@ window.addEventListener("load", () => {
     const toDoBtn = document.getElementById("toDoBtn");
     const toDoInput = document.getElementById("toDoInput");
 
-    toDoBtn.addEventListener("click", () => {
+    const writeTodo = () => {
+
         const isDuplicate = todos.some(
             (todo) => todo.text.toLowerCase() === toDoInput.value.toLowerCase()
         );
@@ -19,8 +20,10 @@ window.addEventListener("load", () => {
         } else {
             if (!toDoInput.value) {
                 alert("Please enter your todo list");
+                return;
             } else if (isDuplicate) {
                 alert("Todo already exists!");
+                return;
             } else {
                 todos.push({ text: toDoInput.value, done: false });
                 localStorage.setItem("todos", JSON.stringify(todos));
@@ -30,7 +33,19 @@ window.addEventListener("load", () => {
         toDoInput.focus();
 
         showTodoList();
-    });
+
+    }
+
+
+    toDoBtn.addEventListener("click", writeTodo);
+
+    toDoInput.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            toDoBtn.click();
+        }
+
+    })
 
     showTodoList();
     showInput();
@@ -40,7 +55,7 @@ const showInput = () => {
     toDoInput.style.display = todos.length === 0 ? "inline" : "none";
 
     toDoInput.addEventListener("blur", () => {
-        toDoInput.style.display = (toDoInput.value == "") && todos.length !== 0 ? "none" : "inline";
+        toDoInput.style.display = (toDoInput.value === "") && todos.length !== 0 ? "none" : "inline";
     });
 };
 
@@ -127,6 +142,15 @@ const showTodoList = () => {
                 localStorage.setItem("todos", JSON.stringify(todos));
                 showTodoList();
             });
+
+            input.addEventListener("keyup", (e) => {
+                if (e.key === 'Enter') {
+
+                    e.preventDefault();
+                    input.blur();
+                }
+
+            })
 
         })
     })
